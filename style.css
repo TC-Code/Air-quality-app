@@ -6,6 +6,17 @@
   transform: translate(-50%, -50%);
 }
 
+#svg-object {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form {
+  margin-top: 200px;
+}
+
 .form input[type='submit'] {
   display: none;
 }

@@ -1,5 +1,6 @@
 // Geocode API - get city latitude and longitude
 const result = document.querySelector('.result');
+
 const getCity = (e) => {
   e.preventDefault();
 
@@ -29,12 +30,10 @@ const getAirInfo = (pos) => {
   const airData = (info) => {
     result.textContent = '';
     const noData = info;
-    console.log(noData);
 
     if (noData === undefined) {
       result.textContent = 'Przepraszamy, brak danych';
       result.setAttribute('style', 'background-color: #999999');
-      console.log('Przepraszamy, brak danych');
       return
     };
 
@@ -51,8 +50,21 @@ const getAirInfo = (pos) => {
 
     // Get the PM10 value
     const valuesPM = info.values;
+    if (valuesPM.length === 0) {
+      result.textContent = 'Przepraszamy, brak danych';
+      result.setAttribute('style', 'background-color: #999999');
+      return
+    };
+
     const valuePM10 = valuesPM.find(PM10 => PM10.name === "PM10");
     const standardPM10 = info.standards.find(standard => standard.pollutant === "PM10");
+
+    if (standardPM10 === undefined) {
+      result.textContent = 'Przepraszamy, brak danych';
+      result.setAttribute('style', 'background-color: #999999');
+      return
+    };
+
     const percentOfPM10 = standardPM10.percent;
     const pm10 = document.createElement('div');
     pm10.className = 'pm10';
@@ -61,6 +73,13 @@ const getAirInfo = (pos) => {
     // Get the PM25 value
     const valuePM25 = valuesPM.find(PM25 => PM25.name === "PM25");
     const standardPM25 = info.standards.find(standard => standard.pollutant === "PM25");
+
+    if (standardPM25 === undefined) {
+      result.textContent = 'Przepraszamy, brak danych';
+      result.setAttribute('style', 'background-color: #999999');
+      return
+    };
+
     const percentOfPM25 = standardPM25.percent;
     const pm25 = document.createElement('div');
     pm25.className = 'pm25';
@@ -68,7 +87,6 @@ const getAirInfo = (pos) => {
 
     if (valuesPM.length === 0 || valuePM10 === undefined || valuePM25 === undefined) {
       result.textContent = 'Przepraszamy, brak danych';
-      console.log('Przepraszamy, brak danych');
       return
     };
 
@@ -76,6 +94,13 @@ const getAirInfo = (pos) => {
     result.appendChild(advice);
     result.appendChild(pm10);
     result.appendChild(pm25);
+
+    // Change Chameleon color depending on air quality
+
+    const chamCol = result.style.backgroundColor
+    const svgObject = document.getElementById('svg-object').contentDocument;
+    const svg = svgObject.getElementById('airQualityBg');
+    svg.setAttribute(`style`, `fill:${chamCol}`)
   }
 }
 
