@@ -1,0 +1,26 @@
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  min-width: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form input[type='submit'] {
+  display: none;
+}
+
+.form input[name='city'] {
+  display: block;
+  min-width: 50%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.result {
+  text-align: center;
+  padding: 20px;
+}
