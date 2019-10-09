@@ -23,7 +23,6 @@ const getAirInfo = (pos) => {
 
   fetch(urlAirly)
     .then(response => response.json())
-    // .then(data => console.log(data.current))
     .then(data => airData(data.current))
     .catch(error => console.error(error))
 
@@ -37,13 +36,19 @@ const getAirInfo = (pos) => {
       return
     };
 
+    const cityName = document.createElement('div');
+    cityName.className = 'cityName';
+    cityName.innerHTML = `<h3>${document.querySelector("[name = 'city']").value}</h3>`;
+
+    document.querySelector("[name = 'city']").value = '';
+
     const advice = document.createElement('div');
     advice.className = 'advice';
-    advice.textContent = info.indexes[0].advice;
+    advice.innerHTML = `<p>${info.indexes[0].advice}</p>`;
 
     const description = document.createElement('div');
     description.className = 'description';
-    description.textContent = info.indexes[0].description;
+    description.innerHTML = `<p>${info.indexes[0].description}</p>`;
 
     const bgColor = info.indexes[0].color;
     result.setAttribute('style', `background-color:${bgColor}`);
@@ -68,7 +73,7 @@ const getAirInfo = (pos) => {
     const percentOfPM10 = standardPM10.percent;
     const pm10 = document.createElement('div');
     pm10.className = 'pm10';
-    pm10.textContent = `${valuePM10.name} ${valuePM10.value} ${percentOfPM10}%`;
+    pm10.innerHTML = `<p><span>${valuePM10.name}</span><span>${valuePM10.value}µg/m3</span><span>${percentOfPM10}%</span></p>`;
 
     // Get the PM25 value
     const valuePM25 = valuesPM.find(PM25 => PM25.name === "PM25");
@@ -83,13 +88,14 @@ const getAirInfo = (pos) => {
     const percentOfPM25 = standardPM25.percent;
     const pm25 = document.createElement('div');
     pm25.className = 'pm25';
-    pm25.textContent = `${valuePM25.name} ${valuePM25.value} ${percentOfPM25}%`;
+    pm25.innerHTML = `<p><span>${valuePM25.name}</span><span>${valuePM25.value}µg/m3</span><span>${percentOfPM25}%</span></p>`;
 
     if (valuesPM.length === 0 || valuePM10 === undefined || valuePM25 === undefined) {
       result.textContent = 'Przepraszamy, brak danych';
       return
     };
 
+    result.appendChild(cityName);
     result.appendChild(description);
     result.appendChild(advice);
     result.appendChild(pm10);
@@ -97,10 +103,10 @@ const getAirInfo = (pos) => {
 
     // Change Chameleon color depending on air quality
 
-    const chamCol = result.style.backgroundColor
+    const chamaeleonColor = result.style.backgroundColor
     const svgObject = document.getElementById('svg-object').contentDocument;
     const svg = svgObject.getElementById('airQualityBg');
-    svg.setAttribute(`style`, `fill:${chamCol}`)
+    svg.setAttribute(`style`, `fill:${chamaeleonColor}; transition: fill 3s ease`);
   }
 }
 
