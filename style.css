@@ -22,6 +22,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-color: rgb(43, 42, 42);
 }
 
 .container {
