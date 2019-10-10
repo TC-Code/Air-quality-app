@@ -1,0 +1,19 @@
+{
+  "name": "air_quality_app",
+  "version": "1.0.0",
+  "description": "Air quality app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TC-Code/Air-quality-app.git"
+  },
+  "author": "TC-Code",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TC-Code/Air-quality-app/issues"
+  },
+  "homepage": "https://github.com/TC-Code/Air-quality-app#readme"
+}
