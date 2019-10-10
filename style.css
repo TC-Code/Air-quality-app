@@ -25,6 +25,13 @@ body {
   background-color: rgb(43, 42, 42);
 }
 
+.logo-airly {
+  width: 10%;
+  position: absolute;
+  left: 2%;
+  top: 2%;
+}
+
 .container {
   max-width: 100%;
   position: absolute;
@@ -84,9 +91,17 @@ body {
   padding-top: 5%;
 }
 
+.result .pm10 p span:nth-child(2) span {
+  font-size: 1rem;
+}
+
 .result .pm25 p {
   margin: 0;
   margin-top: 2%;
+}
+
+.result .pm25 p span:nth-child(2) span {
+  font-size: 1rem;
 }
 
 .result .pm25 span:nth-child(2),

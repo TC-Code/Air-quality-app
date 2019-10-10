@@ -73,7 +73,7 @@ const getAirInfo = (pos) => {
     const percentOfPM10 = standardPM10.percent;
     const pm10 = document.createElement('div');
     pm10.className = 'pm10';
-    pm10.innerHTML = `<p><span>${valuePM10.name}</span><span>${valuePM10.value}µg/m3</span><span>${percentOfPM10}%</span></p>`;
+    pm10.innerHTML = `<p><span>${valuePM10.name}</span><span>${valuePM10.value}<span>µg/m3</span></span><span>${percentOfPM10}%</span></p>`;
 
     // Get the PM25 value
     const valuePM25 = valuesPM.find(PM25 => PM25.name === "PM25");
@@ -88,7 +88,7 @@ const getAirInfo = (pos) => {
     const percentOfPM25 = standardPM25.percent;
     const pm25 = document.createElement('div');
     pm25.className = 'pm25';
-    pm25.innerHTML = `<p><span>${valuePM25.name}</span><span>${valuePM25.value}µg/m3</span><span>${percentOfPM25}%</span></p>`;
+    pm25.innerHTML = `<p><span>${valuePM25.name}</span><span>${valuePM25.value}<span>µg/m3</span></span><span>${percentOfPM25}%</span></p>`;
 
     if (valuesPM.length === 0 || valuePM10 === undefined || valuePM25 === undefined) {
       result.textContent = 'Przepraszamy, brak danych';
